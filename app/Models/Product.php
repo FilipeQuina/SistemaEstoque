@@ -8,5 +8,7 @@ class Product extends Model
 {
     protected $table = 'products';
     public $timestamps = false;
-    protected $fillable ['']
+    protected $fillable = ['codBar','name','price', 'qtd'];
+    
+   
 }

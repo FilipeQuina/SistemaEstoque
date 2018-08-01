@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSalesTable extends Migration
+class FkTables extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,8 @@ class CreateSalesTable extends Migration
      */
     public function up()
     {
-        Schema::create('sales', function (Blueprint $table) {
-            $table->increments('id');
-            $table->float('amount');
-            $table->boolean('caixa2');
-            $table->unsignedinteger('product_id');
-            $table->timestamps();
+        Schema::table('sales',function($table){
+            $table->foreign('procuct_id')->references('codBar')->on('product');
         });
     }
 
@@ -29,6 +25,6 @@ class CreateSalesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sales');
+        //
     }
 }
