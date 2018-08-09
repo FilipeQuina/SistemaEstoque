@@ -17,7 +17,6 @@ class CreateSalesTable extends Migration
             $table->increments('id');
             $table->float('amount');
             $table->boolean('caixa2');
-            $table->unsignedinteger('product_id');
             $table->timestamps();
         });
     }

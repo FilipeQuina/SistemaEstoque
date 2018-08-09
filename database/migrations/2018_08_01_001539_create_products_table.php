@@ -17,12 +17,10 @@ class CreateProductsTable extends Migration
             $table->increments('codBar');
             $table->string('name');
             $table->double('price', 8,2);
-            $table->integer('qtd');
-
+            $table->integer('amountStock');
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      *

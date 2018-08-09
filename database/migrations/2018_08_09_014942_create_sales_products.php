@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class FkTables extends Migration
+class CreateSalesProducts extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class FkTables extends Migration
      */
     public function up()
     {
-        Schema::table('sales',function($table){
-            $table->foreign('procuct_id')->references('codBar')->on('product');
+        Schema::create('sales_products', function (Blueprint $table) {
+            $table->increments('id');
+            $table->timestamps();
         });
     }
 
@@ -25,6 +26,6 @@ class FkTables extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('sales_products');
     }
 }

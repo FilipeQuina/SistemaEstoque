@@ -10,5 +10,7 @@ class Product extends Model
     public $timestamps = false;
     protected $fillable = ['codBar','name','price', 'qtd'];
     
-   
+    public function sales(){
+        return $this->hasMany(Sales::class);
+    }
 }
