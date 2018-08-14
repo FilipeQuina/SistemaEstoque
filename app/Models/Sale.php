@@ -4,13 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Sales extends Model
+class Sale extends Model
 {
     protected $table = 'sales';
     public $timestamps = true;
-    protected $fillable = ['id','amount','caixa2', 'qtd'];
+    protected $fillable = ['amount','caixa2', 'qtd'];
 
     public function products(){
-        return $this->hasMany(Products::class);
+        return $this->hasMany(Product::class);
     }
 }

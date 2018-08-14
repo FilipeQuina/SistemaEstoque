@@ -9,4 +9,7 @@ class SalesController extends Controller
     public function index(){
         return view("sales.lista");
     }
+    public function novio(){
+        return view("sales.novo");
+    }
 }

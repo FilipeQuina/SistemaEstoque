@@ -8,9 +8,9 @@ class Product extends Model
 {
     protected $table = 'products';
     public $timestamps = false;
-    protected $fillable = ['codBar','name','price', 'qtd'];
+    protected $fillable = ['codBar','name','price', 'amountStock'];
     
     public function sales(){
-        return $this->hasMany(Sales::class);
+        return $this->hasMany(Sale::class);
     }
 }
