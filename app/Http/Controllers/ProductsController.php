@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 
+
 class ProductsController extends Controller
 {
     public function index(){
@@ -17,15 +18,15 @@ class ProductsController extends Controller
     }
 
 
-    public function store(ProductRequest $request)
+    public function store(Request $request)
     {
         $product = new Product;
+        $product->id        = $request->id;
         $product->name        = $request->name;
-        $product->description = $request->description;
-        $product->quantity    = $request->quantity;
+        $product->amountStock = $request->quantity;  
         $product->price       = $request->price;
         $product->save();
-        return redirect()->route('products.index')->with('message', 'Product created successfully!');
+        return redirect()->action('ProductsController@index')->with('message', 'Product created successfully!');
     }
   
     public function show($id)
@@ -39,22 +40,22 @@ class ProductsController extends Controller
         return view('products.edit',compact('product'));
     }
   
-    public function update(ProductRequest $request, $id)
+    public function update(Request $request, $id)
     {
         $product = Product::findOrFail($id);
+        $product->id        = $request->id;
         $product->name        = $request->name;
-        $product->description = $request->description;
-        $product->quantity    = $request->quantity;
+        $product->amountStock = $request->quantity;  
         $product->price       = $request->price;
         $product->save();
-        return redirect()->route('products.index')->with('message', 'Product updated successfully!');
+        return redirect()->action('ProductsController@index')->with('message', 'Product updated successfully!');
     }
   
     public function destroy($id)
     {
         $product = Product::findOrFail($id);
         $product->delete();
-        return redirect()->route('products.index')->with('alert-success','Product hasbeen deleted!');
+        return redirect()->action('ProductsController@index')->with('alert-success','Product hasbeen deleted!');
     }
 }
 

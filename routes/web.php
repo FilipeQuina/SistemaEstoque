@@ -14,7 +14,11 @@
 
 
 Route::get('/products', 'ProductsController@index');
-Route::get('/products/novo', 'ProductsController@novo');
+Route::get('/product/novo', 'ProductsController@novo');
+Route::post('/product/store', 'ProductsController@store');
+Route::get('/product/edit/{id}', 'ProductsController@edit');
+Route::post('/product/update/{id}', 'ProductsController@update');
+Route::get('/product/destroy/{id}', 'ProductsController@destroy');
 
 Route::group(['middleware'=>'web'], function (){
     Route::get('/','HomeController@index');

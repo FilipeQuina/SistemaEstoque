@@ -8,7 +8,7 @@ class Product extends Model
 {
     protected $table = 'products';
     public $timestamps = false;
-    protected $fillable = ['codBar','name','price', 'amountStock'];
+    protected $fillable = ['id','name','price', 'amountStock'];
     
     public function sales(){
         return $this->hasMany(Sale::class);

@@ -6,34 +6,32 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    Adicionar produtos
+                    Editar produto
                 </div>
 
                 <div class="card-body">
-                    <form action="/product/store" method="post">
+                    <form action="/product/update/{{$product['id']}}" method="post">
                         {{ csrf_field() }}
                         <div class="col-md-6">
                             <div class="form-group">
-
+                                
                                 <label for="id">Código de barras:</label>
-                                <input type="number" name="id" class="form-control" >
+                                <input type="number" name="id" class="form-control" value="{{$product['id']}}">
 
                                 <label for="name">Nome:</label>
-                                <input type="text" name="name" class="form-control" required>
+                                <input type="text" name="name" class="form-control" required value="{{$product['name']}}">
 
                                 <label for="quantity">Quantidade:</label>
-                                <input type="number" name="quantity" class="form-control" required>
+                                <input type="number" name="quantity" class="form-control" required value="{{$product['amountStock']}}">
                            
                                 <label for="price">Preço:</label>
-                                <input type="text" name="price" class="form-control" >
+                                <input type="text" name="price" class="form-control" value="{{$product['price']}}">
                             </div>
 
                             <div class="col-md-12">
-                                <button type="reset" class="btn btn-default">
-                                    Limpar
-                                </button>
+                                
                                 <button type="submit" class="btn btn-warning" id="black">
-                                    Cadastrar
+                                    Editar
                                 </button>
                             </div>
                         </div>
