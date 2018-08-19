@@ -16,9 +16,13 @@
 Route::get('/products', 'ProductsController@index');
 Route::get('/product/novo', 'ProductsController@novo');
 Route::post('/product/store', 'ProductsController@store');
+Route::post('/product/show', 'ProductsController@show');
 Route::get('/product/edit/{id}', 'ProductsController@edit');
 Route::post('/product/update/{id}', 'ProductsController@update');
 Route::get('/product/destroy/{id}', 'ProductsController@destroy');
+
+Route::get('/sales', 'SalesController@index');
+
 
 Route::group(['middleware'=>'web'], function (){
     Route::get('/','HomeController@index');
@@ -26,6 +30,3 @@ Route::group(['middleware'=>'web'], function (){
     Route::get('/home', 'HomeController@index');
 });
 
-Route::get('/sales', function () {
-    return view('sales.lista');
-});

@@ -29,9 +29,14 @@ class ProductsController extends Controller
         return redirect()->action('ProductsController@index')->with('message', 'Product created successfully!');
     }
   
-    public function show($id)
+    public function show(Request $request)
     {
-        //
+        $products = Product::search($request->namePesquisa);
+    
+        var_dump($products);
+        return view("sales.create",[
+            'products'=>$products
+        ]);
     }
   
     public function edit($id)

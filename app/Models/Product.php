@@ -13,4 +13,8 @@ class Product extends Model
     public function sales(){
         return $this->hasMany(Sale::class);
     }
+
+    public static function search($name){
+        return static::where('name','LIKE','%'.$name.'%')->first();
+    }
 }
