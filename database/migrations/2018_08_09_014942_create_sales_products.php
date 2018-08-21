@@ -18,6 +18,9 @@ class CreateSalesProducts extends Migration
             $table->foreign('sales_id')->references('id')->on('sales');
             $table->integer('products_id')->unsigned();
             $table->foreign('products_id')->references('id')->on('products');
+            $table->integer('quantity')->unsigned();
+            $table->integer('amountItem')->unsigned();
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
         });
     }
 

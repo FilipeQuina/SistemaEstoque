@@ -14,7 +14,13 @@ class Product extends Model
         return $this->hasMany(Sale::class);
     }
 
-    public static function search($name){
+    public static function searchName($name){
         return static::where('name','LIKE','%'.$name.'%')->first();
+
+    }
+    public static function searchCodBar($codBar){
+        echo($codBar);
+        return static::where('id',$codBar)->first();
+
     }
 }

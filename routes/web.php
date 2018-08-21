@@ -22,7 +22,7 @@ Route::post('/product/update/{id}', 'ProductsController@update');
 Route::get('/product/destroy/{id}', 'ProductsController@destroy');
 
 Route::get('/sales', 'SalesController@index');
-
+Route::post('/sales/create', 'SalesController@store');
 
 Route::group(['middleware'=>'web'], function (){
     Route::get('/','HomeController@index');

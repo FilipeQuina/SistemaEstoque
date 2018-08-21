@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use Illuminate\Http\Request;
 use App\Models\Product;
 
@@ -25,15 +26,14 @@ class ProductsController extends Controller
         $product->name        = $request->name;
         $product->amountStock = $request->quantity;  
         $product->price       = $request->price;
+
         $product->save();
         return redirect()->action('ProductsController@index')->with('message', 'Product created successfully!');
     }
   
     public function show(Request $request)
     {
-        $products = Product::search($request->namePesquisa);
-    
-        var_dump($products);
+        $products = Product::searchName($request->namePesquisa);
         return view("sales.create",[
             'products'=>$products
         ]);
@@ -63,4 +63,3 @@ class ProductsController extends Controller
         return redirect()->action('ProductsController@index')->with('alert-success','Product hasbeen deleted!');
     }
 }
-
