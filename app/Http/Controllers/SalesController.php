@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Sale;
-
+use App\Models\Sales_Products;
 
 
 class SalesController extends Controller
@@ -15,10 +15,29 @@ class SalesController extends Controller
     
     public function store(Request $request)
     {
-        $sale = new Sale;
-        $sale->caixa2        = $request->caixa2;
-        $sale->save();
+        
+        if($request->ajax()){
+            $sale = new Sale;
+            $sale->caixa2 = false;
+            $sale->save();
 
-        return redirect()->action('SalesController@index')->with('message', 'sale created successfully!');
+            for($i=0;$i<count($request->lista);$i++){
+               
+                $sales_prod = new Sales_Products;
+                $sales_prod->products_id = $request->lista[$i]['id'];
+                $sales_prod->sales_id = $sale->id;
+                $sales_prod->quantity = 3;
+                $sales_prod->amountItem = 3;
+                $sales_prod->save();
+            }
+
+        }
+        else{
+            echo("não veio o request");
+        }
+
+        return view("sales.create",[
+            'req'=>json_encode($request->lista)
+        ]);
     }
 }
