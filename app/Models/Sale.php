@@ -8,7 +8,7 @@ class Sale extends Model
 {
     protected $table = 'sales';
     public $timestamps = false;
-    protected $fillable = ['amount','caixa2', 'qtd'];
+    protected $fillable = ['amount','orcamento', 'qtd'];
 
     public function products(){
         return $this->hasMany(Product::class);

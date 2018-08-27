@@ -1,7 +1,12 @@
-@extends('layouts.app')
-@section('content')
+@extends('layouts.app') @section('content')
 
 <div class="container">
+
+    @if(session('message'))
+    <div class="alert alert-success">
+        <p>{{session('message')}}</p>
+    </div>
+    @endif
 
 
     <div class="card">
@@ -11,27 +16,25 @@
 
         <div class="card-body">
             <div class="form-group">
-                <form action="{{url('/product/show')}}" method="post">
-                    {{ csrf_field() }}
-
-                    <label for="name">Nome:</label>
-                    <input type="text" name="namePesquisa" id="namePesquisa" class="form-control">
-                    <button class="btn btn-success"> Buscar </button>
-
-                </form>
+                <label for="name">Nome:</label>
+                <input type="text" name="namePesquisa" id="namePesquisa" class="form-control">
+                <button class="btn btn-success" id="buscaProduto_btn"> Buscar </button>
             </div>
 
             <div class="form-group ">
-                @isset ($products)
-                    <input type="hidden" name="caixa2" id="caixa2" value="1">
+                <form action="/sales/create" method="post">
+                    {{ csrf_field() }}
+                    <label for="orcamento">Orçamento?:</label>
+                    <input type="checkbox" name="orcamento" id="orcamento">
+                    <input type="hidden" name="itensLista" id="itensLista">
                     <div class=row>
                         <div class="col-md-5">
                             <label for="name">Nome:</label>
-                            <input type="text" name="name" id="name" class="form-control" value={{$products->name}} readonly>
+                            <input type="text" name="name" id="name" class="form-control" readonly>
                         </div>
                         <div class="col-md-4">
                             <label for="id">Código de barras:</label>
-                            <input type="number" name="id" id="id" class="form-control" value={{$products->id}} readonly>
+                            <input type="number" name="id" id="id" class="form-control" readonly>
                         </div>
                         <div class="col-md-1">
                             <label for="quantity">Quantidade:</label>
@@ -39,13 +42,13 @@
                         </div>
                         <div class="col-md-2">
                             <label for="price">Preço Unitário:</label>
-                            <input type="number" name="price" id="price" class="form-control" value={{$products->price}}
-                            readonly>
+                            <input type="number" name="price" id="price" class="form-control" readonly>
                         </div>
                     </div>
 
-                <button class="btn btn-success " id="fecharVenda"> Fechar venda </button>
-                <button class="btn btn-default" onclick="addlista()"> criar </button> @endisset
+                    <button class="btn btn-success " id="fecharVenda"> Fechar venda </button>
+                </form>
+                <button class="btn btn-default" onclick="addlista()"> criar </button>
 
             </div>
         </div>
@@ -77,7 +80,7 @@
         var tr = document.createElement("tr");
         var tdId = document.createElement("td");
         var tdName = document.createElement("td");
-        var tdPrice= document.createElement("td");
+        var tdPrice = document.createElement("td");
         var tdQtd = document.createElement("td");
         var tdVTotalItem = document.createElement("td");
 
@@ -88,7 +91,7 @@
         tdQtd.innerHTML = qtd;
         tdVTotalItem.innerHTML = VTotalItem;
 
-        var itens={id:id,qtd:qtd,price:price,VTotalItem:VTotalItem,};
+        var itens = { id: id, qtd: qtd, price: price, VTotalItem: VTotalItem, };
 
         tr.appendChild(tdId);
         tr.appendChild(tdName);
@@ -98,29 +101,29 @@
 
         document.getElementById("item").appendChild(tr);
         listaDeItens.push(itens);
-        document.getElementById("listaItens").value=listaDeItens;
+        document.getElementById("itensLista").value = JSON.stringify(listaDeItens);
+        console.log(document.getElementById("itensLista").value);
 
     }
+    $(document).ready(function () {
 
-            $(document).ready(function(){
-                $("#fecharVenda").click(function(event){
 
-                    $.ajax({
-                        //url:"{{url('/sales/create')}}",
-                        url:"/sales/create",
-                        type:'post',
-                        datatype:'json',
-                        data:{ lista: listaDeItens, _token: '{{csrf_token()}}' },
-                        success:function(data){
-
-                        },
-                        error:function(data){
-                            console.log("erro");
-                        }
-
-                    })
-                });
+        $("#buscaProduto_btn").click(function (event) {
+            $.ajax({
+                url: "/product/show",
+                type: 'post',
+                datatype: 'text',
+                data: { nome: $('#namePesquisa').val(), _token: '{{csrf_token()}}' },
+                success: function (data) {
+                    $("#name").val(data.name);
+                    $("#id").val(data.id);
+                    $("#price").val(data.price);
+                },
+                error: function (data) {
+                    console.log("erro");
+                }
+            })
         });
+    });
 
-</script>
-@endsection
+</script> @endsection

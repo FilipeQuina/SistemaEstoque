@@ -33,10 +33,8 @@ class ProductsController extends Controller
   
     public function show(Request $request)
     {
-        $products = Product::searchName($request->namePesquisa);
-        return view("sales.create",[
-            'products'=>$products
-        ]);
+        $products = Product::searchName($request->nome);
+        return \Response::json(Product::searchName($request->nome));
     }
   
     public function edit($id)
@@ -53,7 +51,7 @@ class ProductsController extends Controller
         $product->amountStock = $request->quantity;  
         $product->price       = $request->price;
         $product->save();
-        return redirect()->action('ProductsController@index')->with('message', 'Product updated successfully!');
+        
     }
   
     public function destroy($id)

@@ -12,32 +12,27 @@ class SalesController extends Controller
     public function index(){
         return view("sales.create");
     }
-    
+     public function comprovante(){
+        return view("sales.comprovante");
+    }
+
     public function store(Request $request)
     {
-        
-        if($request->ajax()){
-            $sale = new Sale;
-            $sale->caixa2 = false;
-            $sale->save();
+        $parseJSON=json_decode($request->itensLista,true);
 
-            for($i=0;$i<count($request->lista);$i++){
+        $sale = new Sale;
+        $sale->orcamento = $request->orcamento;
+        $sale->save();
+
+            for($i=0;$i<count($parseJSON);$i++){
                
                 $sales_prod = new Sales_Products;
-                $sales_prod->products_id = $request->lista[$i]['id'];
+                $sales_prod->products_id = $parseJSON[$i]['id'];
                 $sales_prod->sales_id = $sale->id;
-                $sales_prod->quantity = 3;
-                $sales_prod->amountItem = 3;
+                $sales_prod->quantity = $parseJSON[$i]['qtd'];
+                $sales_prod->amountItem = $parseJSON[$i]['VTotalItem'];
                 $sales_prod->save();
             }
-
-        }
-        else{
-            echo("não veio o request");
-        }
-
-        return view("sales.create",[
-            'req'=>json_encode($request->lista)
-        ]);
+        return redirect()->action('SalesController@index')->with('message',"Venda realizada com sucesso");
     }
 }

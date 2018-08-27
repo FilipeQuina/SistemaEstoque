@@ -4,6 +4,11 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
+            @if(session('message'))
+    <div class="alert alert-success">
+        <p>{{session('message')}}</p>
+    </div>
+@endif
                 <div class="card-header">
                     Produtos
                     <a href="{{url('product/novo')}}"class="float-right">Adicionar produtos</a>
