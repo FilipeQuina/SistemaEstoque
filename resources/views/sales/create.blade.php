@@ -44,7 +44,6 @@
                         <input type="number" name="quantity" id="quantity" class="form-control" value="1" required>
                     </div>
 
-
                 </form>
             </div>
         </div>
