@@ -1,0 +1,12 @@
+.espacamento{
+    margin-bottom: 10px;
+}    
+.limite-tabela{
+    max-height:337px;
+    height:337px;
+    overflow-y:auto;
+}
+
+   
+    
+  
