@@ -26,26 +26,27 @@
                     <input type="hidden" name="orcamento" id="orcamento" value="1">
                     <input type="hidden" name="valorTotal" id="valorTotal">
                     <input type="hidden" name="itensLista" id="itensLista">
-
-                    <div>
-                        <label for="name">Nome:</label>
-                        <input type="text" name="name" id="name" class="form-control" readonly>
-                    </div>
-                    <div>
-                        <label for="id">Código de barras:</label>
-                        <input type="number" name="id" id="id" class="form-control" readonly>
-                    </div>
-                    <div>
-                        <label for="price">Preço Unitário:</label>
-                        <input type="number" name="price" id="price" class="form-control" readonly>
-                    </div>
-                    <div>
-                        <label for="quantity">Quantidade:</label>
-                        <input type="number" name="quantity" id="quantity" class="form-control" value="1" required>
-                    </div>
-
                 </form>
+
+                <div>
+                    <label for="name">Nome:</label>
+                    <input type="text" name="name" id="name" class="form-control" readonly>
+                </div>
+                <div>
+                    <label for="id">Código de barras:</label>
+                    <input type="number" name="id" id="id" class="form-control" readonly>
+                </div>
+                <div>
+                    <label for="price">Preço Unitário:</label>
+                    <input type="number" name="price" id="price" class="form-control" readonly>
+                </div>
+                <div>
+                    <label for="quantity">Quantidade:</label>
+                    <input type="number" name="quantity" id="quantity" class="form-control" value="1" required>
+                </div>
+
             </div>
+
         </div>
         <div class="col-md-8">
             <div class="form-control ">
@@ -120,7 +121,7 @@
 
             var itens = { id: id, qtd: qtd, price: price, VTotalItem: VTotalItem, };
             var valorAtual = totalDaVenda += VTotalItem;
-                document.getElementById("valorTotal").value = valorAtual;
+            document.getElementById("valorTotal").value = valorAtual;
             document.getElementById("valorTotal_input").value = valorAtual;
 
             tr.appendChild(tdId);
