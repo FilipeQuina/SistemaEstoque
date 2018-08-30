@@ -60,4 +60,9 @@ class ProductsController extends Controller
         $product->delete();
         return redirect()->action('ProductsController@index')->with('alert-success','Product hasbeen deleted!');
     }
+    public function listaNomes()
+    {
+
+        return \Response::json(Product::listaNomes());
+    }
 }

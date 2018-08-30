@@ -21,6 +21,8 @@ Route::get('/product/edit/{id}', 'ProductsController@edit');
 Route::post('/product/update/{id}', 'ProductsController@update');
 Route::get('/product/destroy/{id}', 'ProductsController@destroy');
 
+Route::get('/product/listaNomes', 'ProductsController@listaNomes');
+
 Route::get('/sales', 'SalesController@index');
 Route::post('/sales/create', 'SalesController@store');
 Route::get('/sales/comprovante', 'SalesController@comprovante')->name('sales.comprovante');

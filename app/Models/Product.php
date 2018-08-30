@@ -18,6 +18,10 @@ class Product extends Model
         return static::where('name','LIKE','%'.$name.'%')->first();
 
     }
+    public static function listaNomes(){
+        return static::select('name')->get();
+
+    }
     public static function searchCodBar($codBar){
         echo($codBar);
         return static::where('id',$codBar)->first();
