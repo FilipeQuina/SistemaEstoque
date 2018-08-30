@@ -1,35 +1,6 @@
-$(function () {
-    var availableTags = [
-        "ActionScript",
-        "AppleScript",
-        "Asp",
-        "BASIC",
-        "C",
-        "C++",
-        "Clojure",
-        "COBOL",
-        "ColdFusion",
-        "Erlang",
-        "Fortran",
-        "Groovy",
-        "Haskell",
-        "Java",
-        "JavaScript",
-        "Lisp",
-        "Perl",
-        "PHP",
-        "Python",
-        "Ruby",
-        "Scala",
-        "Scheme"
-    ];
-    $("#namePesquisa").autocomplete({
-        source: availableTags
-    });
-});
-
 var listaDeItens = [];
 var totalDaVenda = 0;
+var availableTags = [];
 function addlista() {
 
     var id = document.getElementById("id").value;
@@ -39,9 +10,6 @@ function addlista() {
 
     var VTotalItem = price * qtd;
     if (name != "") {
-
-
-
         var tr = document.createElement("tr");
         var tdId = document.createElement("td");
         var tdName = document.createElement("td");
@@ -89,30 +57,3 @@ function deleteRow(i) {
     console.log(totalDaVenda);
     console.log(listaDeItens);
 }
-$(document).ready(function () {
-    $("#fecharVenda").click(function () {
-        $("#itensLista").val(JSON.stringify(listaDeItens));
-        $("#formularioVenda").submit();
-    });
-
-    $("#buscaProduto_btn").click(function (event) {
-        $.ajax({
-            url: "/product/show",
-            type: 'post',
-            datatype: 'text',
-            data: { nome: $('#namePesquisa').val(), _token: '{{csrf_token()}}' },
-            success: function (data) {
-                $("#namePesquisa").val("");
-                $("#name").val(data.name);
-                $("#id").val(data.id);
-                $("#price").val(data.price);
-            },
-            error: function (data) {
-                console.log("erro");
-            }
-        })
-
-
-    });
-    
-});

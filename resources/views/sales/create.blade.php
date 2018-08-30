@@ -47,14 +47,10 @@
                     <label for="quantity">Quantidade:</label>
                     <input type="number" name="quantity" id="quantity" class="form-control" value="1" required>
                 </div>
-
             </div>
-
         </div>
         <div class="col-md-8">
             <div class="form-control ">
-
-
                 <div class="espacamento">
                     <button class="btn btn-warning" onclick="addlista()"> Adicionar Produtos </button>
                     <button class="btn btn-success float-right" id="fecharVenda"> Fechar venda </button>
@@ -72,23 +68,15 @@
                                 <th>Ações</th>
                             </tr>
                         </thead>
-
                         <tbody id="item"></tbody>
-
-
                     </table>
                 </div>
-
             </div>
-
-
             <div class="col-md-2">
                 <label for="valorTotal">valor Total:</label>
                 <input type="text" id="valorTotal_input" class="form-control" readonly>
             </div>
-
         </div>
-
     </div>
 </div>
 
