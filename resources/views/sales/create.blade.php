@@ -45,7 +45,7 @@
                 </div>
                 <div>
                     <label for="quantity">Quantidade:</label>
-                    <input type="number" name="quantity" id="quantity" class="form-control" value="1" required>
+                    <input type="number" name="quantity" id="quantity" class="form-control" value="1" step="0.01" required>
                 </div>
             </div>
         </div>

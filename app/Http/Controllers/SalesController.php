@@ -18,6 +18,7 @@ class SalesController extends Controller
 
     public function store(Request $request)
     {
+        $amountSale = $request->valorTotal;
         $parseJSON=json_decode($request->itensLista,true);
 
         $sale = new Sale;
@@ -33,6 +34,8 @@ class SalesController extends Controller
                 $sales_prod->amountItem = $parseJSON[$i]['VTotalItem'];
                 $sales_prod->save();
             }
-        return redirect()->action('SalesController@index')->with('message',"Venda realizada com sucesso");
+       
+
+        return view("sales.comprovante",compact('parseJSON','amountSale'));
     }
 }

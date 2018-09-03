@@ -9,6 +9,7 @@ function addlista() {
     var qtd = document.getElementById("quantity").value;
 
     var VTotalItem = price * qtd;
+
     if (name != "") {
         var tr = document.createElement("tr");
         var tdId = document.createElement("td");
@@ -25,10 +26,11 @@ function addlista() {
         tdVTotalItem.innerHTML = VTotalItem;
         tdAcao.innerHTML = '<input type="button" class="btn btn-danger btn-sm" value="Excluir" onclick="deleteRow(this.parentNode.parentNode.rowIndex)">';
 
-        var itens = { id: id, qtd: qtd, price: price, VTotalItem: VTotalItem, };
-        var valorAtual = totalDaVenda += VTotalItem;
-        document.getElementById("valorTotal").value = valorAtual;
-        document.getElementById("valorTotal_input").value = valorAtual;
+        var itens = { id: id, name: name, qtd: qtd, price: price, VTotalItem: VTotalItem };
+
+        totalDaVenda += VTotalItem;
+        document.getElementById("valorTotal").value = totalDaVenda;
+        document.getElementById("valorTotal_input").value = totalDaVenda;
 
         tr.appendChild(tdId);
         tr.appendChild(tdName);
@@ -39,8 +41,8 @@ function addlista() {
 
         document.getElementById("item").appendChild(tr);
         listaDeItens.push(itens);
-
-
+        console.log(listaDeItens);
+        
         document.getElementById("id").value = '';
         document.getElementById("name").value = '';
         document.getElementById("price").value = '';
@@ -49,11 +51,8 @@ function addlista() {
 }
 function deleteRow(i) {
     document.getElementById('tabelaDeItens').deleteRow(i);
-    var valorAtual = totalDaVenda -= listaDeItens[i - 1]['price'];
-    document.getElementById("valorTotal").value = valorAtual;
-    document.getElementById("valorTotal_input").value = valorAtual;
+    totalDaVenda -= listaDeItens[i - 1]['VTotalItem'];
+    document.getElementById("valorTotal").value = totalDaVenda;
+    document.getElementById("valorTotal_input").value = totalDaVenda;
     listaDeItens.splice(i - 1, 1);
-
-    console.log(totalDaVenda);
-    console.log(listaDeItens);
 }

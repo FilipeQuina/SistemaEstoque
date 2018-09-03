@@ -19,6 +19,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link href="{{ asset('css/personalizado.css') }}" rel="stylesheet">
+    
 </head>
 
 <body>
@@ -91,9 +92,9 @@
 
     <script src="{{ asset('js/jquery.js') }}"></script>
     <script src="{{ asset('js/jquery-ui.min.js') }}"></script>
-    <script src="{{ asset('js/manipula-lista.js') }}"></script>
+   <script src="{{ asset('js/manipula-lista.js') }}"></script>
     <script>
-        $(document).ready(function () {
+        
             $("#namePesquisa").autocomplete({
                 source: availableTags
             });
@@ -134,4 +135,5 @@
         });
     </script>
 </body>
+
 </html>

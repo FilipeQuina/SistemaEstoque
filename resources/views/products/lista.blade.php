@@ -27,7 +27,7 @@
                                 Preco
                             </th>
                             <th>
-                                Quantidade
+                                Quantidade em estoque
                             </th>
                             <th>
                                 Ações
@@ -39,7 +39,7 @@
                         <tr>
                             <td>{{$product['id']}}</td>
                             <td>{{$product['name']}}</td>
-                            <td>R$ {{$product['price']}}</td>
+                            <td>R$ {{str_replace(".",",",$product['price'])}}</td>
                             <td>{{$product['amountStock']}}</td>
                             <td>
                                 <a href="/product/edit/{{$product['id']}}" class="btn btn-warning">Editar</a>

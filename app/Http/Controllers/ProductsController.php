@@ -25,7 +25,7 @@ class ProductsController extends Controller
         $product->id        = $request->id;
         $product->name        = $request->name;
         $product->amountStock = $request->quantity;  
-        $product->price       = $request->price;
+        $product->price       = str_replace(",",".",$request->price);
 
         $product->save();
         return redirect()->action('ProductsController@index')->with('message', 'Product created successfully!');
@@ -49,7 +49,7 @@ class ProductsController extends Controller
         $product->id        = $request->id;
         $product->name        = $request->name;
         $product->amountStock = $request->quantity;  
-        $product->price       = $request->price;
+        $product->price       = str_replace(",",".",$request->price);
         $product->save();
         
     }

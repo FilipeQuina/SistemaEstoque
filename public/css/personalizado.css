@@ -6,7 +6,11 @@
     height:337px;
     overflow-y:auto;
 }
-
+/*CSS para impressão*/
+@media print {
+    .noprint { display:none; } 
+    body { background: #fff; }
+}
    
     
   

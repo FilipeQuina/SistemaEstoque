@@ -25,7 +25,7 @@ Route::get('/product/listaNomes', 'ProductsController@listaNomes');
 
 Route::get('/sales', 'SalesController@index');
 Route::post('/sales/create', 'SalesController@store');
-Route::get('/sales/comprovante', 'SalesController@comprovante')->name('sales.comprovante');
+Route::get('/sales/comprovante', 'SalesController@comprovante');
 
 Route::group(['middleware'=>'web'], function (){
     Route::get('/','HomeController@index');
