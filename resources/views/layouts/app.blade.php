@@ -19,7 +19,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link href="{{ asset('css/personalizado.css') }}" rel="stylesheet">
-    
+
 </head>
 
 <body>
@@ -47,12 +47,17 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                         </li>
+
+                        <!--
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                         </li>
-
+                        -->
 
                         @else
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/reports') }}">{{ __('Relatórios') }}</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('/products') }}">{{ __('Produtos') }}</a>
                         </li>
@@ -94,7 +99,7 @@
     <script src="{{ asset('js/jquery-ui.min.js') }}"></script>
    <script src="{{ asset('js/manipula-lista.js') }}"></script>
     <script>
-        
+
             $("#namePesquisa").autocomplete({
                 source: availableTags
             });
@@ -132,7 +137,6 @@
                     console.log("erro");
                 }
             })
-        });
     </script>
 </body>
 

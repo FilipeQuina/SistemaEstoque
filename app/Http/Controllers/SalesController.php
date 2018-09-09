@@ -34,8 +34,14 @@ class SalesController extends Controller
                 $sales_prod->amountItem = $parseJSON[$i]['VTotalItem'];
                 $sales_prod->save();
             }
-       
-
         return view("sales.comprovante",compact('parseJSON','amountSale'));
+    }
+    public function reportDate(Request $request){
+        $dateBegin = $request->dateBegin;
+        $dateEnd = $request->dateEnd;
+
+        $reports = Sale::whereBetween('created_at', [$dateBegin, $dateEnd])->get();
+        
+        return view("reports.index",compact('reports'));
     }
 }

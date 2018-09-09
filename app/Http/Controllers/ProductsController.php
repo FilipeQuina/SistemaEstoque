@@ -58,7 +58,7 @@ class ProductsController extends Controller
     {
         $product = Product::findOrFail($id);
         $product->delete();
-        return redirect()->action('ProductsController@index')->with('alert-success','Product hasbeen deleted!');
+        return redirect()->action('ProductsController@index')->with('alert-success','Product has been deleted!');
     }
     public function listaNomes()
     {

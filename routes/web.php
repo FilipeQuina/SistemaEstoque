@@ -26,6 +26,10 @@ Route::get('/product/listaNomes', 'ProductsController@listaNomes');
 Route::get('/sales', 'SalesController@index');
 Route::post('/sales/create', 'SalesController@store');
 Route::get('/sales/comprovante', 'SalesController@comprovante');
+Route::get('/sales/reports', 'SalesController@reportDate');
+
+Route::get('/reports', 'ReportsController@index');
+
 
 Route::group(['middleware'=>'web'], function (){
     Route::get('/','HomeController@index');
