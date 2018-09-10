@@ -23,7 +23,10 @@
 
                                 <label for="quantity">Quantidade:</label>
                                 <input type="number" name="quantity" class="form-control" required value="{{$product['amountStock']}}">
-                           
+
+                                <label for="quantity">Quantidade Adicionada:</label>
+                                <input type="number" name="quantityPlus" class="form-control"  value=0>
+
                                 <label for="price">Preço:</label>
                                 <input type="text" name="price" class="form-control" value="{{$product['price']}}">
                             </div>

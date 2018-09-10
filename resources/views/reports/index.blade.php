@@ -11,23 +11,22 @@
 
     </form>
 
-    <table class="table">
+    <table class="table table-condensed table-bordered">
         <tr>
             <th>Código da venda</th>
             <th>Data</th>
+            <th>Total</th>
+            <th>Detalhes</th>
         </tr>
         @isset($reports)
-
         @foreach($reports as $report)
         <tr>
             <td>{{$report['id']}}</td>
             <td>{{date('d-m-Y H:i:s', strtotime($report['created_at']))}}</td>
+            <td>{{$report['totalValueSale']}}</td>
         </tr>
         @endforeach
         @endif
     </table>
-   
 </div>
-
-
 @endsection

@@ -1,16 +1,23 @@
 var listaDeItens = [];
 var totalDaVenda = 0;
 var availableTags = [];
-function addlista() {
 
+var qtd = document.getElementById("quantity").value;
+
+function addlista() {
     var id = document.getElementById("id").value;
     var name = document.getElementById("name").value;
     var price = document.getElementById("price").value;
-    var qtd = document.getElementById("quantity").value;
+    qtd = document.getElementById("quantity").value;
+    var amntStock = document.getElementById("amntStock").value;
 
     var VTotalItem = price * qtd;
+console.log(qtd);
+console.log(amntStock);
+console.log(VTotalItem);
 
-    if (name != "") {
+    if (name != "" && qtd != "") {
+       
         var tr = document.createElement("tr");
         var tdId = document.createElement("td");
         var tdName = document.createElement("td");
@@ -18,7 +25,7 @@ function addlista() {
         var tdQtd = document.createElement("td");
         var tdVTotalItem = document.createElement("td");
         var tdAcao = document.createElement("td");
-
+        if(amntStock >= 0+qtd){
         tdId.innerHTML = id;
         tdName.innerHTML = name;
         tdPrice.innerHTML = price;
@@ -41,12 +48,17 @@ function addlista() {
 
         document.getElementById("item").appendChild(tr);
         listaDeItens.push(itens);
-        console.log(listaDeItens);
-        
         document.getElementById("id").value = '';
         document.getElementById("name").value = '';
         document.getElementById("price").value = '';
+        document.getElementById("quantity").value = '';
+        document.getElementById("amntStock").value = '';
+        }
+        else{
+            alert("Produto sem estoque");
+        }
     }
+   
 
 }
 function deleteRow(i) {

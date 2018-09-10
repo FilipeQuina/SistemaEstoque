@@ -1,11 +1,7 @@
 <?php
-
 namespace App\Http\Controllers;
-
-
 use Illuminate\Http\Request;
 use App\Models\Product;
-
 
 class ProductsController extends Controller
 {
@@ -48,10 +44,10 @@ class ProductsController extends Controller
         $product = Product::findOrFail($id);
         $product->id        = $request->id;
         $product->name        = $request->name;
-        $product->amountStock = $request->quantity;  
+        $product->amountStock = $request->quantity + $request->quantityPlus ;  
         $product->price       = str_replace(",",".",$request->price);
         $product->save();
-        
+        return redirect()->action('ProductsController@index');
     }
   
     public function destroy($id)

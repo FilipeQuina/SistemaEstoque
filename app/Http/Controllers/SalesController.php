@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Sale;
 use App\Models\Sales_Products;
+use App\Models\Product;
 
 
 class SalesController extends Controller
@@ -20,13 +21,17 @@ class SalesController extends Controller
     {
         $amountSale = $request->valorTotal;
         $parseJSON=json_decode($request->itensLista,true);
-
         $sale = new Sale;
         $sale->orcamento = $request->orcamento;
+        $sale->totalValueSale = $request->valorTotal;
         $sale->save();
 
             for($i=0;$i<count($parseJSON);$i++){
-               
+                //Remover o estoque
+                $product = Product::findOrFail($parseJSON[$i]['id']);
+                $product->amountStock = $product->amountStock - $parseJSON[$i]['qtd'];
+                $product->save();
+
                 $sales_prod = new Sales_Products;
                 $sales_prod->products_id = $parseJSON[$i]['id'];
                 $sales_prod->sales_id = $sale->id;
@@ -40,8 +45,8 @@ class SalesController extends Controller
         $dateBegin = $request->dateBegin;
         $dateEnd = $request->dateEnd;
 
-        $reports = Sale::whereBetween('created_at', [$dateBegin, $dateEnd])->get();
-        
+        $reports = Sale::whereBetween('sales.created_at', [$dateBegin, $dateEnd])->get();
+      
         return view("reports.index",compact('reports'));
     }
 }

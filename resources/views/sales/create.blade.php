@@ -26,9 +26,10 @@
                 <form action="/sales/create" method="post" name="formularioVenda" id="formularioVenda">
                     {{ csrf_field() }}
                     <label for="orcamento">Orçamento?:</label>
-                    <input type="hidden" name="orcamento" id="orcamento" value="1">
-                    <input type="hidden" name="valorTotal" id="valorTotal">
+                    <input type="hidden" name="orcamento" id="orcamento" value="1">df
                     <input type="hidden" name="itensLista" id="itensLista">
+                    <input type="hidden" name="valorTotal" id="valorTotal">
+
                 </form>
 
                 <div>
@@ -45,7 +46,11 @@
                 </div>
                 <div>
                     <label for="quantity">Quantidade:</label>
-                    <input type="number" name="quantity" id="quantity" class="form-control" value="1" step="0.01" required>
+                    <input type="number" name="quantity" id="quantity" min="0" step=".01" class="form-control">
+                </div>
+                <div>
+                    <label for="amntStock">Estoque:</label>
+                    <input type="number" name="amntStock" id="amntStock" class="form-control" readonly>
                 </div>
             </div>
         </div>
@@ -73,8 +78,8 @@
                 </div>
             </div>
             <div class="col-md-2">
-                <label for="valorTotal">valor Total:</label>
-                <input type="text" id="valorTotal_input" class="form-control" readonly>
+                <label for="valorTotal_input">valor Total:</label>
+                <input type="number" name="valorTotal_input" id="valorTotal_input" class="form-control" readonly>
             </div>
         </div>
     </div>

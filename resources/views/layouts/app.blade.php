@@ -48,11 +48,11 @@
                             <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                         </li>
 
-                        <!--
+                      
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                         </li>
-                        -->
+                        <!--  -->
 
                         @else
                         <li class="nav-item">
@@ -97,7 +97,7 @@
 
     <script src="{{ asset('js/jquery.js') }}"></script>
     <script src="{{ asset('js/jquery-ui.min.js') }}"></script>
-   <script src="{{ asset('js/manipula-lista.js') }}"></script>
+    <script src="{{ asset('js/manipula-lista.js') }}"></script>
     <script>
 
             $("#namePesquisa").autocomplete({
@@ -115,10 +115,14 @@
                     datatype: 'text',
                     data: { nome: $('#namePesquisa').val(), _token: '{{csrf_token()}}' },
                     success: function (data) {
+                     
                         $("#namePesquisa").val("");
                         $("#name").val(data.name);
                         $("#id").val(data.id);
                         $("#price").val(data.price);
+                        $("#amntStock").val(data.amountStock);
+                        //$("#quantity").val(1);
+                        
                     },
                     error: function (data) {
                         console.log("erro");

@@ -14,7 +14,7 @@ class Product extends Model
         return $this->hasMany(Sale::class);
     }
     public static function searchName($name){
-        return static::where('name','LIKE','%'.$name.'%')->first();
+        return static::where('name',$name)->first();
     }
     public static function listaNomes(){
         return static::select('name')->get();
