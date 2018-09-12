@@ -22,7 +22,13 @@ class SalesController extends Controller
         $amountSale = $request->valorTotal;
         $parseJSON=json_decode($request->itensLista,true);
         $sale = new Sale;
-        $sale->orcamento = $request->orcamento;
+        if(isset($request->orcamento)){
+            $isOrcamento = 1;
+        }
+        else{
+            $isOrcamento = 0;
+        }
+        $sale->orcamento = $isOrcamento;
         $sale->totalValueSale = $request->valorTotal;
         $sale->save();
 
@@ -42,10 +48,16 @@ class SalesController extends Controller
         return view("sales.comprovante",compact('parseJSON','amountSale'));
     }
     public function reportDate(Request $request){
+        if(isset($request->orcamento)){
+            $isOrcamento = 1;
+        }
+        else{
+            $isOrcamento = 0;
+        }
         $dateBegin = $request->dateBegin;
         $dateEnd = $request->dateEnd;
 
-        $reports = Sale::whereBetween('sales.created_at', [$dateBegin, $dateEnd])->get();
+        $reports = Sale::whereBetween('sales.created_at', [$dateBegin, $dateEnd])->orWhere('orcamento', '=', $isOrcamento)->get();
       
         return view("reports.index",compact('reports'));
     }

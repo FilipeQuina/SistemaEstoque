@@ -1,6 +1,9 @@
 .espacamento{
     margin-bottom: 10px;
 }    
+.espacamentoEsquerda{
+    margin-left: 5px;
+}   
 .limite-tabela{
     max-height:337px;
     height:337px;

@@ -1,22 +1,40 @@
 @extends('layouts.app') @section('content')
 
 <div class="container">
-    <form action="/sales/reports" method="get">
-            {{ csrf_field() }}
-        <label for="dateBegin">Data inicio</label>
-        <input type="date" name="dateBegin" id="dateBegin" required>
-        <label for="dateEnd">Data Final</label>
-        <input type="date" name="dateEnd" id="dateEnd" required>
-        <button type="submit">Buscar</button>
+    <form action="/sales/reports" method="get" class="noprint">
+        {{ csrf_field() }}
+        <div class="row espacamento">
+            <div class="col-md-2">
+                <label for="dateBegin">Data inicio</label>
+                <input type="date" name="dateBegin" id="dateBegin" class="form-control" required>
+            </div>
+            <div class="col-md-2">
+                <label for="dateEnd">Data Final</label>
+                <input type="date" name="dateEnd" id="dateEnd" class="form-control" required>
+            </div>
+
+        </div>
+        <div class="row espacamentoEsquerda">
+            <div>
+                <label for="orcamento">Orçamento?:</label>
+                <input type="checkbox" name="orcamento" id="orcamento">
+            </div>
+
+        </div>
+        <div class="row espacamento espacamentoEsquerda">
+            <button type="submit" class="btn btn-primary">Buscar</button>
+        </div>
 
     </form>
+
+
 
     <table class="table table-condensed table-bordered">
         <tr>
             <th>Código da venda</th>
             <th>Data</th>
             <th>Total</th>
-            <th>Detalhes</th>
+
         </tr>
         @isset($reports)
         @foreach($reports as $report)
@@ -28,5 +46,7 @@
         @endforeach
         @endif
     </table>
+</div>
+
 </div>
 @endsection

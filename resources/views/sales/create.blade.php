@@ -26,7 +26,7 @@
                 <form action="/sales/create" method="post" name="formularioVenda" id="formularioVenda">
                     {{ csrf_field() }}
                     <label for="orcamento">Orçamento?:</label>
-                    <input type="hidden" name="orcamento" id="orcamento" value="1">df
+                    <input type="checkbox" name="orcamento" id="orcamento" >
                     <input type="hidden" name="itensLista" id="itensLista">
                     <input type="hidden" name="valorTotal" id="valorTotal">
 
@@ -82,6 +82,7 @@
                 <input type="number" name="valorTotal_input" id="valorTotal_input" class="form-control" readonly>
             </div>
         </div>
+       
     </div>
 </div>
 

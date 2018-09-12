@@ -12,12 +12,8 @@ function addlista() {
     var amntStock = document.getElementById("amntStock").value;
 
     var VTotalItem = price * qtd;
-console.log(qtd);
-console.log(amntStock);
-console.log(VTotalItem);
 
     if (name != "" && qtd != "") {
-       
         var tr = document.createElement("tr");
         var tdId = document.createElement("td");
         var tdName = document.createElement("td");
@@ -67,4 +63,7 @@ function deleteRow(i) {
     document.getElementById("valorTotal").value = totalDaVenda;
     document.getElementById("valorTotal_input").value = totalDaVenda;
     listaDeItens.splice(i - 1, 1);
+}
+function printar(){
+    window.print();
 }
