@@ -85,5 +85,5 @@
        
     </div>
 </div>
-
+<script src="{{ asset('js/manipula-lista.js') }}"></script>
 @endsection

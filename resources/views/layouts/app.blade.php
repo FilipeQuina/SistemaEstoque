@@ -18,9 +18,10 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link href="{{ asset('css/datatables.css') }}" rel="stylesheet">
     <link href="{{ asset('css/personalizado.css') }}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
 </head>
-
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
@@ -28,11 +29,10 @@
                 <a class="navbar-brand" href="{{ url('/') }}">
                     Sistema de Estoque
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
@@ -60,8 +60,8 @@
                             <a class="nav-link" href="{{ url('/sales') }}">{{ __('Vendas') }}</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false" v-pre>
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -80,7 +80,6 @@
                 </div>
             </div>
         </nav>
-
         <main class="py-4">
             @yield('content')
         </main>
@@ -88,52 +87,57 @@
 
     <!-- Scripts -->
     <!-- Removi a app.js-->
-
+<!--
     <script src="{{ asset('js/jquery.js') }}"></script>
     <script src="{{ asset('js/jquery-ui.min.js') }}"></script>
-    <script src="{{ asset('js/manipula-lista.js') }}"></script>
-    <script>
-
-            $("#namePesquisa").autocomplete({
-                source: availableTags
-            });
-            $("#fecharVenda").click(function () {
-                $("#itensLista").val(JSON.stringify(listaDeItens));
-                $("#formularioVenda").submit();
-            });
-
-            $("#buscaProduto_btn").click(function (event) {
-                $.ajax({
-                    url: "/product/show",
-                    type: 'post',
-                    datatype: 'text',
-                    data: { nome: $('#namePesquisa').val(), _token: '{{csrf_token()}}' },
-                    success: function (data) {
-                     
-                        $("#namePesquisa").val("");
-                        $("#name").val(data.name);
-                        $("#id").val(data.id);
-                        $("#price").val(data.price);
-                        $("#amntStock").val(data.amountStock);
-                    },
-                    error: function (data) {
-                        console.log("erro");
-                    }
-                })
-            });
+    <script src="{{ asset('js/datatables.min.js') }}"></script>
+    <script src="{{ asset('js/DataTables/jQuery-3.3.1/jquery-3.3.1.min.js') }}"></script>
+    <script src="{{ asset('js/DataTables/jQueryUI-1.12.1/jquery-ui.min.js') }}"></script>
+    <script src="{{ asset('js/DataTables/datatables.min.js') }}"></script>
+-->
+<script type="text/javascript" src="https://cdn.datatables.net/v/ju-1.12.1/jq-3.3.1/dt-1.10.18/datatables.min.js"></script>
+<script type="text/javascript" charset="utf-8">
+    $(document).ready( function () {
+        $('#mytable').dataTable();
+        
+        $("#namePesquisa").autocomplete({
+            source: availableTags
+        });
+        $("#fecharVenda").click(function () {
+            $("#itensLista").val(JSON.stringify(listaDeItens));
+            $("#formularioVenda").submit();
+        });
+        $("#buscaProduto_btn").click(function (event) {
             $.ajax({
-                url: "/product/listaNomes",
-                type: 'get',
+                url: "/product/show",
+                type: 'post',
+                datatype: 'text',
+                data: { nome: $('#namePesquisa').val(), _token: '{{csrf_token()}}' },
                 success: function (data) {
-                    for (var i = 0; i < data.length; i++) {
-                        availableTags.push(data[i].name);
-                    }
+                    $("#namePesquisa").val("");
+                    $("#name").val(data.name);
+                    $("#id").val(data.id);
+                    $("#price").val(data.price);
+                    $("#amntStock").val(data.amountStock);
                 },
                 error: function (data) {
                     console.log("erro");
                 }
             })
-    </script>
+        });
+        $.ajax({
+            url: "/product/listaNomes",
+            type: 'get',
+            success: function (data) {
+                for (var i = 0; i < data.length; i++) {
+                    availableTags.push(data[i].name);
+                }
+            },
+            error: function (data) {
+                console.log("erro");
+            }
+        })
+    });
+</script>
 </body>
-
 </html>
